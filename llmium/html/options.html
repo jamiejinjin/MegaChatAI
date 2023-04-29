@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title>Options</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap.css">
+    <link rel="stylesheet" href="/static/fa/css/font-awesome.min.css">
+
+</head>
+<body>
+    <div class="container">
+        <div class="p-2 mt-5">
+            <h2>
+                <i class="fa fa-cog">
+                </i>
+                Options
+            </h2>
+            <div class="pt-3">
+
+                <label for="OPENAI_API_KEY">
+                    OPENAI_API_KEY
+                </label>
+                
+                <div>
+                    <input class="form-control secret-input"
+                        name="OPENAI_API_KEY"
+                        type="password"
+                        placeholder="OPENAI_API_KEY" id="openai-api-key">
+                </div>
+
+                <div class="pt-3">
+                    <button class="btn btn-primary" id="save-btn">
+                        <i class="fa fa-save"></i>
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="../js/options.js">
+    
+</script>
+</html>
