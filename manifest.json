@@ -1,0 +1,32 @@
+{
+    "name": "Llmium",
+    "description" : "🌎 Web x 🌟 Automation",
+    "version": "0.1",
+    "manifest_version": 2,
+    // "background": {
+    //     "scripts": ["src/background.js"],
+    //     "persistent": true
+    //   },
+    "browser_action": {
+        "default_popup": "llmium/html/menu.html",
+        "default_icon": "llmium.png"
+      },
+    "icons":{
+      "16":"llmium.png",
+      "48":"llmium.png",
+      "128":"llmium.png"
+    },
+    "options_page":"llmium/html/options.html",
+    "permissions": [
+        "storage",
+        // "runtime",
+        "unlimitedStorage",
+        // "contextMenus",
+        // "webRequest",
+        // "http://*/*",
+        // "https://*/*",
+        // "file://*/*",
+        // "chrome-extension://*/*",
+        "tabs"
+      ]
+}
