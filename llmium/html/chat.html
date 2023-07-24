@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap.css">
+    <link rel="stylesheet" href="/static/fa/css/font-awesome.min.css">
+    <style>
+        #conversation {
+            padding: 20px;
+        }
+
+        .message {
+            margin: 10px;
+            padding: 10px;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        Chat Playground
+    </h1>
+
+    <div id="conversation"></div>
+    <div id="chat-input">
+        <textarea name="chat-input-text" id="chat-input-text" cols="100%" rows="10"></textarea>
+    </div>
+
+    <div>
+        <button id="send-btn">
+            <i class="fa fa-paper-plane"></i>
+        </button>
+        <button id="stop-generation">
+            <i class="fa fa-stop"></i>
+        </button>
+
+</body>
+
+<script src="../js/chat.js" type="module"></script>
+
+</html>
