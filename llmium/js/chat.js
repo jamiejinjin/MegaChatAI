@@ -169,7 +169,7 @@ const click_send = async () => {
         console.warn('empty input');
         return;
     } else {
-        append_new_message('user', input_text);
+        append_new_message('user', "ME: "+input_text);
         document.querySelector('#chat-input-text').value = '';
         let messages = collect_messages();
         messages.push(
