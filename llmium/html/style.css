@@ -5,9 +5,9 @@
   max-width: 700px;
 }
 
-.text-align{
+.headline{
     text-align: center;
-    padding: 10px;
+    padding: 20px;
     color: rgb(55, 55, 62);
 }
 
@@ -54,6 +54,6 @@ body,#chat-input-text,#conversation{
 }
 
 .btn:hover{
-    background-color:darkgreen;
+    background-color:rgb(21, 120, 95);
     font-weight: bold;
 }

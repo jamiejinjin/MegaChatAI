@@ -200,4 +200,11 @@ const click_send = async () => {
 document.querySelector('#send-btn').addEventListener('click', click_send);
 
 
-
+// Press Enter to send message
+    const sendBtn = document.getElementById("send-btn");
+    const messageInsert = document.getElementById("chat-input");
+    messageInsert.addEventListener("keyup",function(event){
+        if (event.key === "Enter"){
+            sendBtn.click();
+        }
+    });
