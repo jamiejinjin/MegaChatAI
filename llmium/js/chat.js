@@ -169,7 +169,7 @@ const click_send = async () => {
         console.warn('empty input');
         return;
     } else {
-        append_new_message('user', "ME: "+input_text);
+        append_new_message('user', "Me: "+input_text);
         document.querySelector('#chat-input-text').value = '';
         let messages = collect_messages();
         messages.push(
@@ -188,7 +188,6 @@ const click_send = async () => {
                     document.querySelector('#conversation').appendChild(new_message_box);
                 }
                 const { content } = delta;
-
                 new_message_box.innerText += content;
             });
         }

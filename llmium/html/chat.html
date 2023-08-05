@@ -8,13 +8,17 @@
 
 <body>
     
-    <h1 class="headline">
-        Chat Playground
-    </h1>
+    <img src="../../logo.png" alt="logo" class="logo">
     <div class="container">
     <div id="conversation"></div>
     <div id="chat-input">
-        <textarea name="chat-input-text" id="chat-input-text" cols="100%" rows="1" placeholder="Ask me anything here..."></textarea>
+        <select id="chat-input-dropdown">
+            <option value="" disabled selected>SELECT</option>
+            <option value="Option 1">Chat-Gpt</option>
+            <option value="Option 2">Gpt4</option>
+            <option value="Option 3">LLM</option>
+        </select>
+        <input name="chat-input-text" id="chat-input-text" type="text" cols="100%" rows="1" placeholder="Ask me anything here..."></input>
     </div>
 
     <div>

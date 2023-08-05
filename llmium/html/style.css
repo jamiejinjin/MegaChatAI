@@ -1,3 +1,7 @@
+body,#chat-input,#chat-input-text,#conversation{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
 .container{
   align-items: center;
   text-align: center;
@@ -5,45 +9,70 @@
   max-width: 700px;
 }
 
-.headline{
+h1{
     text-align: center;
     padding: 20px;
     color: rgb(55, 55, 62);
 }
 
 #conversation {
-    padding: 10px;
-    
+    padding: 10px;   
     text-align: left;
+    width: 100%;   
+    background: linear-gradient(to right, #e66465, #9198e5); 
+    border-radius: 2px;
+}
+
+.logo{
+    display: block;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
 }
 
 .message-user {
-    font-size: small;
+    font-size: medium;
     padding: 5px;
-    color:black;
+    color:rgb(255, 255, 255);
 }
 
 .message-assistant {
-    font-size: medium;
+    font-size:large;
     padding: 5px;
-    color:chocolate;
+    color:rgb(255, 255, 255);
 }
 
-body,#chat-input-text,#conversation{
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+#chat-input {
+   
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 20px auto;
+    padding: 10px;
+    border: 1px solid rgb(203, 203, 203);
+    border-radius: 5px;
 }
 
 #chat-input-text{
     font-size: medium;
-    max-width: 600px;
-    padding:10px 6px;
+    width: 100%;
+    padding: 5px;
     border-color:#445252;
     border-width: 2px;
     border-radius: 2px;
 }
 
+#chat-input-dropdown {
+    flex: 1; /* Take up remaining space */
+    padding: 5px;
+    border: 0px solid #ccc;
+    border-radius: 3px;
+    margin-right: 10px; /* Add some space between dropdown and input */
+}
+
 .btn{
-    background-color: chocolate;
+    background-color: rgb(0, 0, 0);
     color: aliceblue;
     margin: 10px 3px;
     padding: 8px;
@@ -54,6 +83,6 @@ body,#chat-input-text,#conversation{
 }
 
 .btn:hover{
-    background-color:rgb(21, 120, 95);
+    background-color:#9198e5;
     font-weight: bold;
 }
