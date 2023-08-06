@@ -2,11 +2,17 @@ body,#chat-input,#chat-input-text,#conversation{
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.container{
+.container,#description-title,#description-text{
   align-items: center;
   text-align: center;
   margin: 0 auto;
   max-width: 700px;
+}
+
+#description{
+    padding: 50px;
+    width: auto;
+    color: grey;
 }
 
 h1{

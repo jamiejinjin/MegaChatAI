@@ -12,10 +12,11 @@
     <div id="conversation"></div>
     <div id="chat-input">
         <select id="model-select-dropdown">
-            <option value="gpt-3.5-turbo" selected>Gpt3.5</option>
-            <option value="gpt-3.5-turbo-16k">Gpt3.5 16,000 tokens</option>
-            <option value="gpt-4">Gpt4</option>
-            <option value="gpt-4-32k">Gpt4 32,000 tokens</option>
+            <option value="gpt-3.5-turbo" selected>SELECT A MODEL</option>
+            <option value="gpt-3.5-turbo">GPT-3.5</option>
+            <option value="gpt-3.5-turbo-16k">GPT-3.5 16,000 tokens</option>
+            <option value="gpt-4">GPT-4</option>
+            <option value="gpt-4-32k">GPT-4 32,000 tokens</option>
            
         </select>
         <input name="chat-input-text" id="chat-input-text" type="text" cols="100%" rows="1" placeholder="Ask me anything here..."></input>
@@ -29,7 +30,12 @@
            <i class="fa fa-pause"></i> Stop Generation
         </button>
     </div>
+    <div id="description">
+        <h3 id="description-title"></h3>
+        <p id="description-text"></p>
     </div>
+    </div>
+    
 </body>
 
 <script src="../js/chat.js" type="module"></script>

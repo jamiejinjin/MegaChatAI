@@ -218,8 +218,17 @@ document.querySelector('#send-btn').addEventListener('click', click_send);
     });
 
 // Select the model
+let modelDescription = {
+    "gpt-3.5-turbo":"Most capable GPT-3.5 model and optimized for chat at 1/10th the cost of text-davinci-003.Most tokens - 4096",
+    "gpt-3.5-turbo-16k":"Same capabilities as the standard gpt-3.5-turbo model but with 4 times the context.Most tokens - 16384",
+    "gpt-4":"More capable than any GPT-3.5 model, able to do more complex tasks, and optimized for chat.",
+    "gpt-4-32k":"Same capabilities as the base gpt-4 mode but with 4x the context length."
+}
+
 let modelOptions = document.getElementById("model-select-dropdown");
 modelOptions.addEventListener("change",function(){
     chat.params.model = modelOptions.value;
-    console.debug(chat.params.model)
+    // console.debug(chat.params.model)
+    document.getElementById("description-title").innerText = modelOptions.value;
+    document.getElementById("description-text").innerText = modelDescription[modelOptions.value];
 });
