@@ -49,6 +49,9 @@ class OpenAIChat {
     async initialize() {
         try {
             this.token = await load_secrets_from_storage('OPENAI_API_KEY');
+            if (this.token == undefined){
+                console.error("Token not defined")
+            }
             console.debug('OPENAI_API_KEY token loaded');
         } catch (e) {
             console.error('OPENAI_API_KEY token not found');
@@ -104,6 +107,10 @@ class OpenAIChat {
             signal: controller.signal,
         });
 
+        if (response.status === 404) {
+            alert("404 - Your token doesn't have the access to the model");
+        }
+
         // loop through the response body stream
         const reader = response.body.getReader();
         while (true) {
@@ -119,7 +126,7 @@ class OpenAIChat {
                 .map((line) => line.replace("data: ", ""))
                 .filter((line) => line.length > 0)
                 .filter((line) => line != "[DONE]")
-                .map((line) => JSON.parse(line));
+                .map((line) => JSON.parse(line))
 
             // console.log(chunk);
             // console.log(JSON.parse(chunk));
@@ -144,24 +151,22 @@ const append_new_message = (role, message) => {
     conversation_box.appendChild(new_message);
 }
 
-let model = "gpt-3.5-turbo-16k";
-
-const chat = new OpenAIChat({ model });
-
 
 const collect_messages = () => {
     /*
     Collect all messages in the conversation box
     */
-    let messages = [];
-    document.querySelectorAll('.message').forEach((message_box) => {
-        let role = message_box.classList[1].split('-')[1];
-        let content = message_box.innerText.trim();
-        messages.push({ role, content });
+   let messages = [];
+   document.querySelectorAll('.message').forEach((message_box) => {
+       let role = message_box.classList[1].split('-')[1];
+       let content = message_box.innerText.trim();
+       messages.push({ role, content });
     });
     return messages;
 }
 
+let model = "gpt-3.5-turbo-16k";    
+let chat = new OpenAIChat({ model });
 
 const click_send = async () => {
     let input_text = document.querySelector('#chat-input-text').value;
@@ -172,15 +177,17 @@ const click_send = async () => {
         append_new_message('user', "Me: "+input_text);
         document.querySelector('#chat-input-text').value = '';
         let messages = collect_messages();
-        messages.push(
-            { "content": input_text, "role": "user" }
-        )
-        chat.send_messages_stream(messages, (answer_list) => {
-            answer_list.forEach((answer) => {
-                const { delta } = answer.choices[0];
+        console.log(messages)
 
+            chat.send_messages_stream(messages, (answer_list) => {
+                answer_list.forEach((answer) => {
+                    const { delta } = answer.choices[0];
+                    
                 let new_message_box = document.querySelector(`#message-${answer.id}`);
                 if (!new_message_box) {
+                    let new_meassage_head = document.createElement('div');
+                    new_meassage_head.innerText = '🌟 AI Assistant:';
+                    document.querySelector('#conversation').appendChild(new_meassage_head)
                     new_message_box = document.createElement('div');
                     new_message_box.classList.add('message');
                     new_message_box.classList.add(`message-assistant`);
@@ -188,7 +195,9 @@ const click_send = async () => {
                     document.querySelector('#conversation').appendChild(new_message_box);
                 }
                 const { content } = delta;
-                new_message_box.innerText += content;
+                if (content != undefined){
+                    new_message_box.innerText += content;
+                }
             });
         }
         );
@@ -207,3 +216,10 @@ document.querySelector('#send-btn').addEventListener('click', click_send);
             sendBtn.click();
         }
     });
+
+// Select the model
+let modelOptions = document.getElementById("model-select-dropdown");
+modelOptions.addEventListener("change",function(){
+    chat.params.model = modelOptions.value;
+    console.debug(chat.params.model)
+});

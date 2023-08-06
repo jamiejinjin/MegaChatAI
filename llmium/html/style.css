@@ -21,6 +21,7 @@ h1{
     width: 100%;   
     background: linear-gradient(to right, #e66465, #9198e5); 
     border-radius: 2px;
+    color: gainsboro;
 }
 
 .logo{
@@ -63,7 +64,7 @@ h1{
     border-radius: 2px;
 }
 
-#chat-input-dropdown {
+#model-select-dropdown {
     flex: 1; /* Take up remaining space */
     padding: 5px;
     border: 0px solid #ccc;
