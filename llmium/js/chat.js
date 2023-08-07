@@ -15,10 +15,11 @@ const OPENAI_CHAT_API_URL = 'https://api.openai.com/v1/chat/completions';
 // Create a TextDecoder to decode the response body stream
 const decoder = new TextDecoder();
 
-const controller = new AbortController();
+let controller = new AbortController();
 
 document.querySelector("#stop-generation").addEventListener("click", () => {
-    controller.abort();
+    controller.abort();   
+    controller = new AbortController();
 });
 
 class OpenAIChat {
@@ -216,6 +217,17 @@ document.querySelector('#send-btn').addEventListener('click', click_send);
             sendBtn.click();
         }
     });
+
+
+// Stop generation after sending
+document.getElementById('send-btn').addEventListener('click',function(){
+    let stopG = document.getElementById('stop-generation');
+    if (stopG.hasAttribute("hidden")) {
+        stopG.removeAttribute("hidden");
+    }else{
+        // stopG.setAttribute(" "," ")
+    }
+})
 
 // Select the model
 let modelDescription = {
