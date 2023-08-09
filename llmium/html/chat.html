@@ -12,8 +12,7 @@
     <div id="conversation"></div>
     <div id="chat-input">
         <select id="model-select-dropdown">
-            <option value="gpt-3.5-turbo" selected>SELECT A MODEL</option>
-            <option value="gpt-3.5-turbo">GPT-3.5</option>
+            <option value="gpt-3.5-turbo" selected>Default Model(GPT-3.5)</option>
             <option value="gpt-3.5-turbo-16k">GPT-3.5 16,000 tokens</option>
             <option value="gpt-4">GPT-4</option>
             <option value="gpt-4-32k">GPT-4 32,000 tokens</option>
@@ -21,8 +20,11 @@
         </select>
         <input name="chat-input-text" id="chat-input-text" type="text" cols="100%" rows="1" placeholder="Ask me anything here..."></input>
     </div>
-
-    <div>
+    <div class="foldable">
+            <input id="prompt" type="text" placeholder="Define this AI assisant, say if you are a..."></input>
+        </div>
+            <div>
+        <button id="prompt-btn" class="btn">Prompt</button>  
         <button id="send-btn" class="btn">
             <i class="fa fa-paper-plane"></i> Send
         </button>

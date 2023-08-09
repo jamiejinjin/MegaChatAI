@@ -142,10 +142,11 @@ class OpenAIChat {
     }
 }
 
-
 const append_new_message = (role, message) => {
+    // Append the content to the conversation area
     let conversation_box = document.querySelector('#conversation');
     let new_message = document.createElement('div');
+    // Give every message class including "message" and role
     new_message.classList.add('message');
     new_message.classList.add(`message-${role}`);
     new_message.innerText = message;
@@ -158,13 +159,24 @@ const collect_messages = () => {
     Collect all messages in the conversation box
     */
    let messages = [];
-   document.querySelectorAll('.message').forEach((message_box) => {
-       let role = message_box.classList[1].split('-')[1];
-       let content = message_box.innerText.trim();
-       messages.push({ role, content });
-    });
-    return messages;
+    let prompt_text = document.querySelector('#prompt').value;
+    if(prompt_text !==''){
+        // If there's an prompt, give this array system&content first
+        let role = "system";
+        let content = prompt_text;
+        messages.push({role,content});
+    }
+
+    document.querySelectorAll('.message').forEach((message_box) => {
+        // Select each message's role and content
+        let role = message_box.classList[1].split('-')[1];
+        let content = message_box.innerText.trim();
+      // Push role and content into the array "message"
+        messages.push({ role, content });
+     });
+     return messages;  
 }
+
 
 let model = "gpt-3.5-turbo-16k";    
 let chat = new OpenAIChat({ model });
@@ -172,11 +184,20 @@ let chat = new OpenAIChat({ model });
 const click_send = async () => {
     let input_text = document.querySelector('#chat-input-text').value;
     if (input_text == '') {
-        console.warn('empty input');
+        alert('Please enter your question')
         return;
     } else {
+         // Stop generation button after sending
+        let stopG = document.getElementById('stop-generation');
+        if (stopG.hasAttribute("hidden")){
+                stopG.removeAttribute("hidden")
+            };  
+
+        // Print the result on conversation area
         append_new_message('user', "Me: "+input_text);
+        // Clear the input box after sending
         document.querySelector('#chat-input-text').value = '';
+        
         let messages = collect_messages();
         console.log(messages)
 
@@ -195,14 +216,30 @@ const click_send = async () => {
                     new_message_box.id = `message-${answer.id}`;
                     document.querySelector('#conversation').appendChild(new_message_box);
                 }
-                const { content } = delta;
+                let { content } = delta;
                 if (content != undefined){
-                    new_message_box.innerText += content;
+                    let span = document.createElement('span');
+                    content = content.replace('\n', '<br>')
+                    span.innerHTML = content;
+                    new_message_box.appendChild(span);
+
+                    // Change the text color effect
+                    function changeTextColor(element,colorClass,seconds){
+                        setTimeout(()=>{
+                            element.className=colorClass;
+                        },seconds*1000)
+                    };
+
+                    changeTextColor(span, 'orange' ,0.);
+                    changeTextColor(span, 'red', 0.2);
+                    changeTextColor(span, 'yellow' ,0.4);
+                    changeTextColor(span, 'almostwhite' ,0.6);
+                    changeTextColor(span, 'white' , 1.0);
                 }
             });
         }
-        );
-    }
+        );   
+    }    
 }
 
 
@@ -218,25 +255,13 @@ document.querySelector('#send-btn').addEventListener('click', click_send);
         }
     });
 
-
-// Stop generation after sending
-document.getElementById('send-btn').addEventListener('click',function(){
-    let stopG = document.getElementById('stop-generation');
-    if (stopG.hasAttribute("hidden")) {
-        stopG.removeAttribute("hidden");
-    }else{
-        // stopG.setAttribute(" "," ")
-    }
-})
-
-// Select the model
+// Dropdown to select the model
 let modelDescription = {
     "gpt-3.5-turbo":"Most capable GPT-3.5 model and optimized for chat at 1/10th the cost of text-davinci-003.Most tokens - 4096",
     "gpt-3.5-turbo-16k":"Same capabilities as the standard gpt-3.5-turbo model but with 4 times the context.Most tokens - 16384",
     "gpt-4":"More capable than any GPT-3.5 model, able to do more complex tasks, and optimized for chat.",
     "gpt-4-32k":"Same capabilities as the base gpt-4 mode but with 4x the context length."
-}
-
+};
 let modelOptions = document.getElementById("model-select-dropdown");
 modelOptions.addEventListener("change",function(){
     chat.params.model = modelOptions.value;
@@ -244,3 +269,14 @@ modelOptions.addEventListener("change",function(){
     document.getElementById("description-title").innerText = modelOptions.value;
     document.getElementById("description-text").innerText = modelDescription[modelOptions.value];
 });
+
+
+// Prompt button to fold&unfold the prompt input
+let foldbtn = document.getElementById('prompt-btn');
+let foldableInput = document.querySelector('.foldable');
+
+foldbtn.addEventListener('click',function(){
+    foldableInput.classList.toggle('expanded');
+    foldbtn.style.display = "none"
+});
+

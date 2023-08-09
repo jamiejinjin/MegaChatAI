@@ -27,7 +27,8 @@ h1{
     width: 100%;   
     background: linear-gradient(to right, #e66465, #9198e5); 
     border-radius: 2px;
-    color: gainsboro;
+    color:white;
+    font-size: medium;
 }
 
 .logo{
@@ -41,13 +42,11 @@ h1{
 .message-user {
     font-size: medium;
     padding: 5px;
-    color:rgb(255, 255, 255);
 }
 
 .message-assistant {
-    font-size:large;
-    padding: 5px;
-    color:rgb(255, 255, 255);
+    font-size:medium;
+    padding: 5px; 
 }
 
 #chat-input {
@@ -70,6 +69,29 @@ h1{
     border-radius: 2px;
 }
 
+
+
+.foldable {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease;
+}
+
+.foldable.expanded {
+    height: auto;
+    font-size: medium;
+}
+
+#prompt{
+    font-size: medium;
+    width: 80%;
+    padding: 5px;
+    border: 1.5px solid rgb(138, 106, 242);
+    border-radius: 2px;
+}
+
+
+
 #model-select-dropdown {
     flex: 1; /* Take up remaining space */
     padding: 5px;
@@ -90,6 +112,39 @@ h1{
 }
 
 .btn:hover{
-    background-color:#9198e5;
+    background-color:rgb(138, 106, 242);
     font-weight: bold;
+}
+
+.red {
+    color: #f00;
+    text-shadow: #f22 1px 0 12px;
+}
+
+.orange {
+    color: #fb1100;
+    text-shadow: orange 1px 2 10px;
+}
+
+.yellow {
+    color: #ffaa88;
+    text-shadow: #dddd22 1px 0 5px;
+}
+
+.almostwhite {
+    color: #ffeeaa;
+    text-shadow: #eeffaa 1px 0 2px;
+}
+
+.blue {
+    color: rgb(0, 183, 255);
+}
+
+.purple {
+    color: rgb(64, 1, 254);
+}
+
+.white {
+    color: white;
+    text-shadow: none;
 }
