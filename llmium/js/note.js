@@ -1,6 +1,3 @@
-console.log("note.js loaded");
-
-
 /*
 This is how to fetch an image from the OpenAI API
 in the command line:
@@ -39,17 +36,20 @@ const fetch_image = async (promt) => {
         body: JSON.stringify({
             "prompt": promt,
             "n": 1,
-            "size": "1024x1024"
+            "size": "512x512"
         })
     });
     const json = await response.json();
+    console.log(json)
     const image_url = json.data[0].url
-
     return image_url;
 }
 
+
+// Click button and send prompt
 const send_prompt_and_visualize = async () => {
-    let prompt = document.querySelector("#note-input-text").value;
+    let prompt0 = document.querySelector("#note-input-text").value;
+    let prompt = "Please generate a realistic photo includs these following description: " + prompt0;
 
     if (prompt == "") {
         alert("Please enter a prompt");
@@ -68,7 +68,6 @@ const send_prompt_and_visualize = async () => {
     image_container.appendChild(image);
 
 }
-
 
 document.querySelector("#imagine").addEventListener("click", send_prompt_and_visualize);
 
