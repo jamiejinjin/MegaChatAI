@@ -45,11 +45,25 @@ const fetch_image = async (promt) => {
     return image_url;
 }
 
+// Get keyword prompt,make it a array first, otherwise it's a HTMLcollection
+const keywords_btn = Array.from(document.getElementsByClassName("btn-small"));
+
+keywords_btn.forEach(
+    button => {
+        button.addEventListener("click", ()=>{
+            let promptinput = document.querySelector("#note-input-text");
+            promptinput.value += button.innerText+' ';
+        })
+    }
+);
+
+
+
 
 // Click button and send prompt
 const send_prompt_and_visualize = async () => {
     let prompt0 = document.querySelector("#note-input-text").value;
-    let prompt = "Please generate a realistic photo includs these following description: " + prompt0;
+    let prompt = "Please generate a photography includs these following description: " + prompt0;
 
     if (prompt == "") {
         alert("Please enter a prompt");

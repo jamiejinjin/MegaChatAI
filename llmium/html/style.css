@@ -8,6 +8,11 @@ body,#chat-input,#chat-input-text,#conversation{
   max-width: 700px;   
 }
 
+.btn-container{
+text-align: center;
+margin-bottom: 40px;
+}
+
 #description{
     padding: 50px;
     width: auto;
