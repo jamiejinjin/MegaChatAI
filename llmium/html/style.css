@@ -134,6 +134,10 @@ h1{
     background-color: #445252;
 }
 
+.clicked{
+    background-color: #445252;
+}
+
 .red {
     color: #f00;
     text-shadow: #f22 1px 0 12px;

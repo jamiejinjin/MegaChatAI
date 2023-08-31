@@ -48,15 +48,16 @@ const fetch_image = async (promt) => {
 // Get keyword prompt,make it a array first, otherwise it's a HTMLcollection
 const keywords_btn = Array.from(document.getElementsByClassName("btn-small"));
 
+//Get every clicked keyword and put it into the input 
 keywords_btn.forEach(
     button => {
         button.addEventListener("click", ()=>{
             let promptinput = document.querySelector("#note-input-text");
             promptinput.value += button.innerText+' ';
+            button.classList.add("clicked");
         })
     }
 );
-
 
 
 
