@@ -50,12 +50,13 @@ const keywords_btn = Array.from(document.getElementsByClassName("btn-small"));
 
 //Get every clicked keyword and put it into the input 
 keywords_btn.forEach(
-    button => {
-        button.addEventListener("click", ()=>{
+    button => {function handleclick(){
             let promptinput = document.querySelector("#note-input-text");
             promptinput.value += button.innerText+' ';
             button.classList.add("clicked");
-        })
+            button.removeEventListener("click",handleclick)
+        }
+        button.addEventListener("click",handleclick)
     }
 );
 
