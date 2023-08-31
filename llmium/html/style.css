@@ -104,14 +104,29 @@ h1{
     margin: 10px 3px;
     padding: 8px;
     border: 1px;
-    border-radius: 2px;
+    border-radius: 5px;
     font-size: large;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.btn-small{
+    background-color:rgb(0, 146, 95);
+    padding: 8px;
+    border: 1px;
+    color: #ffffff;
+    font-size: medium;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 3px;
+    margin: 8px;
+}
+
 .btn:hover{
-    background-color:rgb(138, 106, 242);
+    background-color:rgb(0,146,95);
     font-weight: bold;
+}
+
+.btn-small:hover{
+    background-color: #445252;
 }
 
 .red {
