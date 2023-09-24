@@ -62,10 +62,10 @@ keywords_btn.forEach(
 
 
 
-// Click button and send prompt
+// Click imagine button and send prompt
 const send_prompt_and_visualize = async () => {
     let prompt0 = document.querySelector("#note-input-text").value;
-    let prompt = "Please generate a photography includs these following description: " + prompt0;
+    let prompt = "Please generate an art picture includes these following description: " + prompt0;
 
     if (prompt == "") {
         alert("Please enter a prompt");
